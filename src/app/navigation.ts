@@ -6,6 +6,8 @@ import { useLocation } from 'wouter'
 // visit or reload; /khesht/#/settings always loads the app.
 export const paths = {
   home: '/',
+  add: '/add',
+  edit: (id: string) => `/edit/${id}`,
   settings: '/settings',
 } as const
 
