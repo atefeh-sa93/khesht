@@ -2,13 +2,16 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { basePath } from './app.config.ts'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
+  // Builds and `pnpm preview` use the production base path, so preview
+  // behaves exactly like the live site; dev stays at /. (Preview runs as
+  // command 'serve', hence isPreview.)
+  base: command === 'build' || isPreview ? basePath(process.env.BASE_PATH) : '/',
   plugins: [react(), tailwindcss()],
   test: {
     include: ['tests/unit/**/*.test.ts'],
-    // The first unit tests arrive with the i18n and date helpers (#4, #5).
-    passWithNoTests: true,
   },
-})
+}))
