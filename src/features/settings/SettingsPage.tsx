@@ -4,6 +4,8 @@ import { updateSettings, useSettings } from '../../app/settings.ts'
 import { t } from '../../lib/i18n.ts'
 import { formatDate, todayIso, type Calendar } from '../../lib/jalali.ts'
 import type { Locale } from '../../lib/locale.ts'
+import { usePersistState } from '../../pwa/persistStorage.ts'
+import { IconAlertTriangle, IconShieldCheck } from '../../ui/icons.tsx'
 
 interface TileOption<T extends string> {
   value: T
@@ -81,10 +83,36 @@ export function SettingsPage() {
           { value: 'gregorian', glyph: formatDate(today, locale, 'gregorian', short), label: t(locale, 'gregorian') },
         ]}
       />
+      <StorageStatus />
       {/* Only the build id is forced LTR; the label stays in the page direction. */}
       <p className="mt-auto text-center text-xs text-text-muted">
         {t(locale, 'version')} <span dir="ltr">{__BUILD_ID__} · {__BUILD_DATE__}</span>
       </p>
     </>
+  )
+}
+
+/**
+ * Whether the browser may clear the app's data. Hidden while checking.
+ * Browsers without the API can evict data too, so they show the warning.
+ */
+function StorageStatus() {
+  const { locale } = useSettings()
+  const state = usePersistState()
+  if (!state) return null
+  const safe = state === 'persisted'
+  const Icon = safe ? IconShieldCheck : IconAlertTriangle
+
+  return (
+    <section>
+      <h2 className="mb-2 text-xs text-text-secondary">{t(locale, 'storage')}</h2>
+      <div className="flex gap-3 rounded-card border border-border bg-surface p-3">
+        <Icon size={20} className={`mt-0.5 flex-none ${safe ? 'text-brand-600' : 'text-warning-text'}`} />
+        <div>
+          <p className="text-sm">{t(locale, safe ? 'storagePersisted' : 'storageAtRisk')}</p>
+          <p className="text-xs text-text-secondary">{t(locale, safe ? 'storagePersistedHint' : 'storageAtRiskHint')}</p>
+        </div>
+      </div>
+    </section>
   )
 }

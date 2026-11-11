@@ -27,6 +27,11 @@ const strings = {
     later: 'بعداً',
     offline: 'آفلاین',
     offlineHint: 'همه‌چیز روی همین دستگاه ذخیره می‌شود',
+    storage: 'حافظه',
+    storagePersisted: 'ذخیره دائمی فعال است',
+    storagePersistedHint: 'مرورگر داده‌هایت را خودبه‌خود پاک نمی‌کند.',
+    storageAtRisk: 'ذخیره دائمی فعال نیست',
+    storageAtRiskHint: 'اگر فضای دستگاه کم شود، مرورگر ممکن است داده‌ها را پاک کند. نصب اپ و پشتیبان‌گیری کمک می‌کند.',
   },
   en: {
     appName: 'Khesht',
@@ -50,6 +55,11 @@ const strings = {
     later: 'Later',
     offline: 'Offline',
     offlineHint: 'Everything is saved on this device',
+    storage: 'Storage',
+    storagePersisted: 'Persistent storage is on',
+    storagePersistedHint: "The browser won't clear your data on its own.",
+    storageAtRisk: 'Persistent storage is off',
+    storageAtRiskHint: 'If the device runs low on space, the browser may clear your data. Installing the app and keeping a backup help.',
   },
 } satisfies Record<Locale, Record<string, string>>
 
