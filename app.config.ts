@@ -1,5 +1,14 @@
 // Settings a project made from this template is most likely to change.
 // Kept in one file so the build, the PWA manifest and the E2E tests agree.
+// No Node dependencies: the app itself imports this file too.
+
+/**
+ * Short, stable id of the app: lowercase letters, digits and dashes. It
+ * prefixes the localStorage keys and later names the IndexedDB database and
+ * tags backup files. Change it once, before real users have data: data saved
+ * under the old id is not carried over.
+ */
+export const APP_ID = 'khesht'
 
 /**
  * Path the app is served from in production. GitHub Pages serves a project
