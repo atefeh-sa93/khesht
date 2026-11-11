@@ -57,3 +57,24 @@ export function IconWorld(props: IconProps) {
     </Icon>
   )
 }
+
+export function IconRefresh(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" />
+      <path d="M19.5 4.5v4h-4" />
+    </Icon>
+  )
+}
+
+export function IconWifiOff(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 18.5h.01" />
+      <path d="M9.2 15.6a4 4 0 0 1 5.6 0" />
+      <path d="M6.3 12.7a8 8 0 0 1 4-2.1M14.6 10.8a8 8 0 0 1 3.1 1.9" />
+      <path d="M3.5 9.8a12 12 0 0 1 3.4-2.3M10.8 6.6a12 12 0 0 1 9.7 3.2" />
+      <path d="M4 4l16 16" />
+    </Icon>
+  )
+}

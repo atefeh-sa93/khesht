@@ -12,13 +12,15 @@
     "lint": "oxlint",
     "typecheck": "tsc -b",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "generate-icons": "pwa-assets-generator"
   },
   "dependencies": {
     "@fontsource-variable/vazirmatn": "^5.3.0",
     "jalaali-js": "^2.0.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "workbox-window": "^7.4.1",
     "wouter": "^3.13.0"
   },
   "devDependencies": {
@@ -27,11 +29,13 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@vite-pwa/assets-generator": "^2.0.0",
     "@vitejs/plugin-react": "^6.1.2",
     "oxlint": "^1.89.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~7.0.2",
     "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
     "vitest": "^5.0.5"
   }
 }
