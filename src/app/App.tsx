@@ -1,29 +1,28 @@
-import { t } from '../lib/i18n.ts'
-import { formatDate, todayIso } from '../lib/jalali.ts'
-import { updateSettings, useSettings } from './settings.ts'
+import { Router, useLocation } from 'wouter'
+import { useHashLocation } from 'wouter/use-hash-location'
+import { BottomNav } from './BottomNav.tsx'
+import { Routes } from './routes.tsx'
+import { TABS } from './tabs.ts'
 
-// Placeholder screen. The app shell with routes and settings replaces it (#8).
 export default function App() {
-  const { locale, calendar } = useSettings()
+  return (
+    <Router hook={useHashLocation}>
+      <Shell />
+    </Router>
+  )
+}
+
+function Shell() {
+  const [location] = useLocation()
+  // Tabs show the bottom navigation; other screens (forms, not found) are focused tasks without it.
+  const onTab = TABS.some((tab) => tab.path === location)
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-3 p-4">
-      <div className="flex items-center justify-between gap-3">
-        <h1 className="text-3xl font-bold text-brand-800">{t(locale, 'appName')}</h1>
-        <button
-          type="button"
-          onClick={() => updateSettings({ locale: locale === 'fa' ? 'en' : 'fa' })}
-          // The visible text starts the name, so voice control users can say it.
-          aria-label={`${t(locale, 'otherLanguageShort')}, ${t(locale, 'switchLanguage')}`}
-          className="rounded-control border border-border-strong px-3 py-1.5 text-sm text-brand-800"
-        >
-          {t(locale, 'otherLanguageShort')}
-        </button>
-      </div>
-      <p className="text-text-secondary">{t(locale, 'tagline')}</p>
-      <p className="text-sm text-text-muted">
-        {t(locale, 'today')}: {formatDate(todayIso(), locale, calendar)}
-      </p>
-    </main>
+    <>
+      <main className={`mx-auto flex min-h-dvh max-w-md flex-col gap-4 p-4 ${onTab ? 'pb-24' : ''}`}>
+        <Routes />
+      </main>
+      {onTab && <BottomNav />}
+    </>
   )
 }
