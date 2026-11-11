@@ -11,6 +11,13 @@
 export const APP_ID = 'khesht'
 
 /**
+ * Calendar used until the user picks one in settings, in both languages.
+ * Dates are always stored as ISO Gregorian, so changing this only changes
+ * how they are shown.
+ */
+export const DEFAULT_CALENDAR: 'jalali' | 'gregorian' = 'jalali'
+
+/**
  * Path the app is served from in production. GitHub Pages serves a project
  * site from /<repo-name>/. The deploy workflow passes BASE_PATH built from
  * the repository name, so a copy made with "Use this template" works without

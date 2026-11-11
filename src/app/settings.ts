@@ -1,9 +1,11 @@
 import { useSyncExternalStore } from 'react'
-import { APP_ID } from '../../app.config.ts'
+import { APP_ID, DEFAULT_CALENDAR } from '../../app.config.ts'
+import type { Calendar } from '../lib/jalali.ts'
 import { dirOf, type Locale } from '../lib/locale.ts'
 
 export interface Settings {
   locale: Locale
+  calendar: Calendar
 }
 
 const STORAGE_KEY = `${APP_ID}.settings`
@@ -14,8 +16,8 @@ export function detectLocale(languages: readonly string[]): Locale {
 }
 
 /**
- * Saved choices win over detection. Anything malformed in storage is
- * ignored rather than trusted.
+ * Saved choices win over detection and defaults. Anything malformed in
+ * storage is ignored rather than trusted.
  */
 export function resolveSettings(saved: string | null, languages: readonly string[]): Settings {
   let parsed: Partial<Settings> = {}
@@ -27,6 +29,7 @@ export function resolveSettings(saved: string | null, languages: readonly string
   }
   return {
     locale: parsed.locale === 'fa' || parsed.locale === 'en' ? parsed.locale : detectLocale(languages),
+    calendar: parsed.calendar === 'jalali' || parsed.calendar === 'gregorian' ? parsed.calendar : DEFAULT_CALENDAR,
   }
 }
 

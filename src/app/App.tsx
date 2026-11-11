@@ -1,9 +1,10 @@
 import { t } from '../lib/i18n.ts'
+import { formatDate, todayIso } from '../lib/jalali.ts'
 import { updateSettings, useSettings } from './settings.ts'
 
 // Placeholder screen. The app shell with routes and settings replaces it (#8).
 export default function App() {
-  const { locale } = useSettings()
+  const { locale, calendar } = useSettings()
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-3 p-4">
@@ -20,6 +21,9 @@ export default function App() {
         </button>
       </div>
       <p className="text-text-secondary">{t(locale, 'tagline')}</p>
+      <p className="text-sm text-text-muted">
+        {t(locale, 'today')}: {formatDate(todayIso(), locale, calendar)}
+      </p>
     </main>
   )
 }

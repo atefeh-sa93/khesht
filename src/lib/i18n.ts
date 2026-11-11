@@ -11,6 +11,7 @@ const strings = {
     // cannot read the current one can still find it.
     switchLanguage: 'Switch to English',
     otherLanguageShort: 'EN',
+    today: 'امروز',
   },
   en: {
     appName: 'Khesht',
@@ -18,6 +19,7 @@ const strings = {
     language: 'Language',
     switchLanguage: 'تغییر به فارسی',
     otherLanguageShort: 'فا',
+    today: 'Today',
   },
 } satisfies Record<Locale, Record<string, string>>
 
