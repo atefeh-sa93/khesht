@@ -1,5 +1,6 @@
 import { isValidJalaaliDate, jalaaliMonthLength, toGregorian, toJalaali } from 'jalaali-js'
 import type { Locale } from './locale.ts'
+import { formatDigits } from './numbers.ts'
 
 // Dates are stored as ISO Gregorian strings ("2026-11-03"): they sort and
 // filter correctly as plain strings and any tool can read them in a backup
@@ -130,12 +131,6 @@ const WEEKDAYS: Record<Locale, readonly string[]> = {
 // Names are hard-coded instead of read from Intl.DateTimeFormat because
 // browsers disagree on Persian month names and on the default calendar
 // for fa-IR. Digits still come from Intl, without grouping (no "۱٬۴۰۵").
-const digitFormatters: Record<Locale, Intl.NumberFormat> = {
-  fa: new Intl.NumberFormat('fa-IR', { useGrouping: false }),
-  en: new Intl.NumberFormat('en-US', { useGrouping: false }),
-}
-
-const digits = (n: number, locale: Locale) => digitFormatters[locale].format(n)
 
 export function monthName(month: number, locale: Locale, calendar: Calendar): string {
   return MONTHS[calendar][locale][month - 1]
@@ -143,7 +138,7 @@ export function monthName(month: number, locale: Locale, calendar: Calendar): st
 
 /** "آبان ۱۴۰۵", "Aban 1405", "November 2026". */
 export function formatMonth(year: number, month: number, locale: Locale, calendar: Calendar): string {
-  return `${monthName(month, locale, calendar)} ${digits(year, locale)}`
+  return `${monthName(month, locale, calendar)} ${formatDigits(year, locale)}`
 }
 
 export interface FormatDateOptions {
@@ -159,8 +154,8 @@ export function formatDate(
   { weekday = true, year = true }: FormatDateOptions = {},
 ): string {
   const parts = toCalendar(iso, calendar)
-  const words = [`${digits(parts.day, locale)} ${monthName(parts.month, locale, calendar)}`]
-  if (year) words.push(digits(parts.year, locale))
+  const words = [`${formatDigits(parts.day, locale)} ${monthName(parts.month, locale, calendar)}`]
+  if (year) words.push(formatDigits(parts.year, locale))
   if (weekday) {
     const { year: gy, month: gm, day: gd } = parseIsoDate(iso)
     words.unshift(WEEKDAYS[locale][new Date(Date.UTC(gy, gm - 1, gd)).getUTCDay()])
