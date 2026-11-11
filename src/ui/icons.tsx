@@ -78,3 +78,21 @@ export function IconWifiOff(props: IconProps) {
     </Icon>
   )
 }
+
+export function IconShieldCheck(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3.5l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9v-5z" />
+      <path d="M9 12l2 2 4-4" />
+    </Icon>
+  )
+}
+
+export function IconAlertTriangle(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 4L3 19.5h18z" />
+      <path d="M12 10v4M12 17h.01" />
+    </Icon>
+  )
+}
