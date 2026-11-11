@@ -130,3 +130,19 @@ export function IconNote(props: IconProps) {
     </Icon>
   )
 }
+
+export function IconDownload(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14" />
+    </Icon>
+  )
+}
+
+export function IconUpload(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 19.5h14" />
+    </Icon>
+  )
+}
