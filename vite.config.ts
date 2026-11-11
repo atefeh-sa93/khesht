@@ -12,6 +12,6 @@ export default defineConfig(({ command, isPreview }) => ({
   base: command === 'build' || isPreview ? basePath(process.env.BASE_PATH) : '/',
   plugins: [react(), tailwindcss()],
   test: {
-    include: ['tests/unit/**/*.test.ts'],
+    include: ['tests/unit/**/*.test.{ts,tsx}'],
   },
 }))
