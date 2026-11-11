@@ -75,5 +75,7 @@ function subscribe(listener: () => void) {
 }
 
 export function useSettings(): Settings {
-  return useSyncExternalStore(subscribe, getSettings)
+  // The third argument lets components render outside a browser page too,
+  // as in unit tests with react-dom/server.
+  return useSyncExternalStore(subscribe, getSettings, getSettings)
 }
