@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { DEFAULT_CALENDAR } from '../../app.config.ts'
 import { detectLocale, resolveSettings } from '../../src/app/settings.ts'
 import { dirOf } from '../../src/lib/locale.ts'
 
@@ -16,17 +17,22 @@ describe('detectLocale', () => {
 })
 
 describe('resolveSettings', () => {
-  it('detects the language when nothing is saved', () => {
-    expect(resolveSettings(null, ['en-GB'])).toEqual({ locale: 'en' })
-    expect(resolveSettings(null, ['fa-IR'])).toEqual({ locale: 'fa' })
+  it('detects the language and uses the default calendar when nothing is saved', () => {
+    expect(resolveSettings(null, ['en-GB'])).toEqual({ locale: 'en', calendar: DEFAULT_CALENDAR })
+    expect(resolveSettings(null, ['fa-IR'])).toEqual({ locale: 'fa', calendar: DEFAULT_CALENDAR })
   })
 
-  it('prefers the saved choice over the browser language', () => {
-    expect(resolveSettings(JSON.stringify({ locale: 'en' }), ['fa-IR'])).toEqual({ locale: 'en' })
+  it('prefers the saved choices over the browser language and the default', () => {
+    const saved = JSON.stringify({ locale: 'en', calendar: 'gregorian' })
+    expect(resolveSettings(saved, ['fa-IR'])).toEqual({ locale: 'en', calendar: 'gregorian' })
   })
 
-  it.each(['not json', '{"locale":"de"}', '42', 'null', '[]'])('ignores bad saved value %j', (saved) => {
-    expect(resolveSettings(saved, ['fa-IR'])).toEqual({ locale: 'fa' })
+  it('keeps a saved calendar when only the language is missing', () => {
+    expect(resolveSettings('{"calendar":"jalali"}', ['en-US'])).toEqual({ locale: 'en', calendar: 'jalali' })
+  })
+
+  it.each(['not json', '{"locale":"de","calendar":"lunar"}', '42', 'null', '[]'])('ignores bad saved value %j', (saved) => {
+    expect(resolveSettings(saved, ['fa-IR'])).toEqual({ locale: 'fa', calendar: DEFAULT_CALENDAR })
   })
 })
 
