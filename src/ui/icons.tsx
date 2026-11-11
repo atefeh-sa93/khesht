@@ -96,3 +96,37 @@ export function IconAlertTriangle(props: IconProps) {
     </Icon>
   )
 }
+
+export function IconPlus(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 5v14M5 12h14" />
+    </Icon>
+  )
+}
+
+export function IconX(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </Icon>
+  )
+}
+
+export function IconTrash(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4.5 7h15M10 11v6M14 11v6" />
+      <path d="M6 7l1 12.5h10L18 7M9.5 7V4.5h5V7" />
+    </Icon>
+  )
+}
+
+export function IconNote(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6 3.5h9l3.5 3.5v13.5H6z" />
+      <path d="M9 10h6M9 13.5h6M9 17h3.5" />
+    </Icon>
+  )
+}
