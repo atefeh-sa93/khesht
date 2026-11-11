@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Khesht</title>
-    <meta name="description" content="Starter template for offline-first, installable Persian PWAs." />
-    <meta name="theme-color" content="#f7f7fb" />
+    <!-- %…% values are filled in from app.config.ts at build time (vite.config.ts). -->
+    <title>%APP_SHORT_NAME%</title>
+    <meta name="description" content="%APP_DESCRIPTION%" />
+    <meta name="theme-color" content="%THEME_COLOR%" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#534ab7"/>
+  <!-- A brick (khesht), kept inside the central 80% so maskable crops never cut it. -->
+  <rect x="116" y="176" width="280" height="160" rx="28" fill="#ffffff"/>
+  <path d="M116 256h280M220 176v80M300 256v80" stroke="#7f77dd" stroke-width="16"/>
+</svg>

@@ -10,6 +10,18 @@
  */
 export const APP_ID = 'khesht'
 
+/** Full name, shown when installing the app and in the app switcher. */
+export const APP_NAME = 'Khesht · خشت'
+
+/** Short name, under the home-screen icon and in the browser tab. */
+export const APP_SHORT_NAME = 'Khesht'
+
+/** One sentence for the manifest and the page's meta description. */
+export const APP_DESCRIPTION = 'Starter template for offline-first, installable Persian PWAs.'
+
+/** Page background, also used for the browser bar and the splash screen. */
+export const THEME_COLOR = '#f7f7fb'
+
 /**
  * Calendar used until the user picks one in settings, in both languages.
  * Dates are always stored as ISO Gregorian, so changing this only changes

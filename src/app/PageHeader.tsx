@@ -1,4 +1,5 @@
 import { t } from '../lib/i18n.ts'
+import { OfflineBadge } from '../pwa/OfflineBadge.tsx'
 import { IconWorld } from '../ui/icons.tsx'
 import { updateSettings, useSettings } from './settings.ts'
 
@@ -22,12 +23,15 @@ export function LanguageButton() {
   )
 }
 
-/** Title and (unless the page has its own picker) the language button. */
+/** Title, offline badge and (unless the page has its own picker) the language button. */
 export function PageHeader({ title, languageButton = true }: { title: string; languageButton?: boolean }) {
   return (
     <header className="flex items-center justify-between gap-2">
       <h1 className="text-lg font-medium">{title}</h1>
-      <div className="flex items-center gap-2">{languageButton && <LanguageButton />}</div>
+      <div className="flex items-center gap-2">
+        <OfflineBadge />
+        {languageButton && <LanguageButton />}
+      </div>
     </header>
   )
 }

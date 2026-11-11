@@ -22,6 +22,11 @@ const strings = {
     version: 'نسخه',
     notFound: 'این صفحه پیدا نشد.',
     backHome: 'برگشت به خانه',
+    updateReady: 'نسخه جدید آماده است',
+    reload: 'بارگذاری',
+    later: 'بعداً',
+    offline: 'آفلاین',
+    offlineHint: 'همه‌چیز روی همین دستگاه ذخیره می‌شود',
   },
   en: {
     appName: 'Khesht',
@@ -40,6 +45,11 @@ const strings = {
     version: 'Version',
     notFound: "This page doesn't exist.",
     backHome: 'Back to home',
+    updateReady: 'A new version is ready',
+    reload: 'Reload',
+    later: 'Later',
+    offline: 'Offline',
+    offlineHint: 'Everything is saved on this device',
   },
 } satisfies Record<Locale, Record<string, string>>
 
